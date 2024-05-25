@@ -1,0 +1,92 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 TimesNewRomanPSMT;\f1\fswiss\fcharset0 Helvetica;\f2\froman\fcharset0 TimesNewRomanPS-ItalicMT;
+}
+{\colortbl;\red255\green255\blue255;\red3\green45\blue153;\red5\green61\blue204;\red5\green68\blue254;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c25950\c66514;\cssrgb\c0\c33896\c83855;\cssrgb\c0\c38136\c99824;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww20200\viewh19900\viewkind1
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 La plus grande \'e9tape a \'e9t\'e9 de terminer l'objet factor oracle qui est g\'e9n\'e9ralis\'e9 pour diff\'e9rents types de donn\'e9es, et l'objet factor_oracle_player pour improviser avec lui.\
+\
+1. Le patch de l'oracle factor est ici :
+\f1 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 patchers/data_structures/factor_oracle/factor_oracle.maxpat\cf0 \
+\
+
+\f0 2. Pour utiliser diff\'e9rentes fonctions de comparaison, vous devez \'e9crire un patch Max qui effectue la comparaison des \'e9tiquettes. Ensuite, vous pouvez changer la fonction de comparaison dans le patch factor oracle en lui passant le message "comparaison" et le nom du patch de comparaison. Jusqu'\'e0 pr\'e9sent, j'ai \'e9crit deux patchs de comparaison :
+\f1 \
+\
+\cf3 patchers/data_structures/factor_oracle/compare/fo.compare.equal_chords.maxpat\
+\
+patchers/data_structures/factor_oracle/compare/fo.compare.equal_chords_in_3_semitone_range.maxpat\cf0 \
+\
+
+\f0 Les deux fonctionnent, mais je n'ai pas encore int\'e9gr\'e9 la seconde - c'est-\'e0-dire qu'elle trouve un rythme avec un accord dans une plage de 3 demi-tons (vers le haut ou vers le bas), mais apr\'e8s l'avoir fait, le programme ne pr\'e9forme pas encore le changement de hauteur sur la sortie MIDI ou audio.\
+\
+3. Il existe \'e9galement une structure de donn\'e9es pour les "donn\'e9es de la grille", afin de faciliter le chargement, l'enregistrement et la recherche de rythmes :
+\f1 \
+\
+\cf2 patchers/data_structures/grid_data/grid_data.maxpat\cf0 \
+\
+
+\f0 4. Les donn\'e9es de la grille sont sauvegard\'e9es dans les fichiers .json des chansons que j'utilise depuis le d\'e9but. Il existe un patch pour cr\'e9er les donn\'e9es de la grille \'e0 la main, que je vous ai montr\'e9 pr\'e9c\'e9demment :
+\f1 \
+\
+\cf2 patchers/data_file_makers/djazz_make_grid.maxpat\cf0 \
+\
+
+\f0 5. Il existe \'e9galement un correctif qui permet de couper et de coller les listes lisp des donn\'e9es de la grille \'e0 partir des fichiers "GridData.lisp", ce qui les convertira en dictionnaire, les ajoutera au fichier de chansons associ\'e9 et r\'e9enregistrera le fichier : 
+\f1 \
+\
+\cf3 patchers/data_file_makers/djazz_lisp_grid_to_dict.maxpat\cf0 \
+\
+
+\f0 Pour l'instant, j'ai ajout\'e9 les donn\'e9es de la grille \'e0 quelques chansons pour les tester : "AllINeed", "AllOfMe" et "AutumnLeaves".\
+\
+6. Il y a un patch pour extraire les donn\'e9es de la grille des partitions audio textuelles comme celles que vous avez envoy\'e9es vers le nouveau format :
+\f1 \
+\
+\cf3 patchers/data_file_makers/text_score_to_audio_grid_data.maxpat\cf0 \
+\
+
+\f0 7. Le "factor oracle player" qui prend les \'e9tiquettes une par une, qui peuvent \'eatre de n'importe quelle forme (mais dans le programme actuel, c'est un dictionnaire avec deux entr\'e9es : la racine de l'accord et l'\'e9tiquette de l'accord), et utilise un factor oracle pour produire un battement qui correspond \'e0 l'\'e9tiquette. Il fonctionne de la m\'eame mani\'e8re que la version LISP : vous d\'e9finissez la continuit\'e9 maximale et il tente de s'y adapter. Lorsque la continuit\'e9 maximale est atteinte, il prend un lien de suffixe et recherche une \'e9tiquette correspondante. Si aucune \'e9tiquette correspondante n'est trouv\'e9e, il choisit un \'e9tat al\'e9atoire :
+\f1 \
+\
+\cf3 patchers/factor_oracle_player/factor_oracle_player.maxpat\cf0 \
+\
+
+\f0 8. L'impl\'e9mentation du lecteur d'oracle factoriel est presque termin\'e9e. En ce qui concerne l'\'e9criture de nouvelles partitions d'antescofo improvis\'e9es \'e0 partir d'anciennes partitions, le patch inachev\'e9 est ici :
+\f1 \
+\
+\cf4 patchers/improvise_antescofo/djazz.improvise_antescofo.maxpat\cf0 \
+\
+
+\f0 Lorsque le bouton "NEW" est press\'e9, il lit la partition antescofo actuelle dans la m\'e9moire (en la convertissant en un objet Max dict) (ceci est fait avec Javascript), puis ex\'e9cute le lecteur factor oracle pour g\'e9n\'e9rer une succession diff\'e9rente de rythmes pour chaque canal demand\'e9, en mappant ces rythmes \'e0 diff\'e9rents canaux (non utilis\'e9s), et en combinant le tout \'e0 nouveau dans un Max dict. \
+ Le contenu des canaux d'origine n'est pas modifi\'e9, comme vous l'avez demand\'e9 ; seul le nouveau contenu des nouveaux canaux est ajout\'e9. \
+\
+Ce qui n'est PAS fait, c'est d'\'e9crire le nouveau Max dict dans une partition antescofo. Cela doit \'eatre fait en Javascript, car le temps de passage des notes doit \'eatre tri\'e9 et les nouveaux temps delta calcul\'e9s, ce qui serait difficile \'e0 faire dans Max. Cela ne prendra pas beaucoup de temps \'e0 terminer, je ne l'ai simplement pas fait ; je peux le faire lundi prochain. \
+\
+9. Le factor oracle player fonctionne de la m\'eame mani\'e8re pour les improvisateurs audio, mais il n'\'e9crit aucune partition (donc pas de Javascript ici) : il envoie simplement des donn\'e9es aux objets 
+\f2\i supervp
+\f0\i0  pour qu'ils jouent \'e0 partir du tampon audio (enregistr\'e9 ou charg\'e9) :\
+
+\f1 \
+\cf4 patchers/improvise_oracles/djazz_audio_oracle_players.maxpat\cf0 \
+\
+
+\f0 Ce patch est encore buggy en termes d'interface/impl\'e9mentation et je dois passer mardi prochain \'e0 le debugger.\
+\
+---------------------------------\
+\
+Alors, ce qui reste \'e0 faire:\
+\
+1. Int\'e9grer le d\'e9calage de hauteur de la sortie du lecteur oracle lorsque la comparaison de la tessiture \'e0 3 demi-tons est utilis\'e9e.\
+2. Terminer l'\'e9criture et le chargement de la partition de l'improvisation antescofo.\
+3. D\'e9boguer le patch des improvisateurs audio.\
+4. Finir le patch des improvisateurs MIDI (et inclure les syncopes).\
+5. Test test test test test !\
+}

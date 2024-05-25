@@ -1,0 +1,50 @@
+$outlet                  := test
+$tempo                   := 60
+$beat_duration_in_ms     := 1000
+$notes_in_beat           := tab []
+
+
+whenever ($tempo)
+{
+     $beat_duration_in_ms := 60000.0 / $tempo
+}
+
+
+whenever ($notes_in_beat)
+{
+     $note_data_length   := 4
+     $note_count         := $notes_in_beat[0]
+
+     forall $i in $note_count
+     {
+          $note_pos := $note_data_length * $i + 1; 
+
+          $ontime   := $notes_in_beat[$note_pos + 0] * $beat_duration_in_ms
+          $pitch    := $notes_in_beat[$note_pos + 1]
+          $velocity := $notes_in_beat[$note_pos + 2]
+          $duration := $notes_in_beat[$note_pos + 3] * $beat_duration_in_ms
+
+          § $ontime @command($outlet) $pitch $velocity $duration
+     }
+
+     $notes_in_beat := tab []
+}
+
+
+
+/*
+whenever ($notes_in_beat)
+{
+     forall $note in $notes_in_beat
+     {
+          $ontime   := $note[0] + $beat_duration_in_ms
+          $pitch    := $note[1]
+          $velocity := $note[2]
+          $duration := $note[3] * $beat_duration_in_ms
+
+          $ontime print $pitch $velocity $duration
+     }
+
+     $notes_in_beat := tab []
+}
+*/
