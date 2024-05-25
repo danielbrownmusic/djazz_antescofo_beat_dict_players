@@ -123,7 +123,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 3,
 					"numoutlets" : 3,
-					"outlettype" : [ "", "", "" ],
+					"outlettype" : [ "", "", "dictionary" ],
 					"patching_rect" : [ 320.5, 445.0, 178.0, 22.0 ],
 					"text" : "djazz_factor_oracle_player",
 					"varname" : "djazz_factor_oracle_player"
@@ -145,7 +145,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "(float) tempo",
 					"id" : "obj-4",
 					"index" : 2,
 					"maxclass" : "inlet",
