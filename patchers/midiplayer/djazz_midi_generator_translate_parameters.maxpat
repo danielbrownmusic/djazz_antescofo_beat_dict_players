@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 4,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 155.0, 328.0, 1513.0, 547.0 ],
+		"rect" : [ 155.0, 328.0, 1801.0, 504.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -76,7 +76,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 4,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -239,11 +239,11 @@
 				"box" : 				{
 					"id" : "obj-1",
 					"maxclass" : "newobj",
-					"numinlets" : 11,
-					"numoutlets" : 11,
-					"outlettype" : [ "", "", "", "", "", "", "", "", "", "", "" ],
-					"patching_rect" : [ 43.666672945022583, 86.333354473114014, 1099.0, 22.0 ],
-					"text" : "route speed_active loop_length start_beat end_beat tempo speed_numerator speed_denominator loop_section_active loop_section_beats score_file"
+					"numinlets" : 10,
+					"numoutlets" : 10,
+					"outlettype" : [ "", "", "", "", "", "", "", "", "", "" ],
+					"patching_rect" : [ 43.666672945022583, 86.333354473114014, 744.0, 22.0 ],
+					"text" : "route speed_active loop_length start_beat end_beat tempo speed_numerator speed_denominator loop_section_active loop_section_beats"
 				}
 
 			}
@@ -332,21 +332,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 285.499995147274035, 293.666674, 188.999999523162842, 35.0 ],
+					"patching_rect" : [ 285.499995147274035, 293.666674, 191.0, 35.0 ],
 					"text" : "loop_previous_beats::loop_length $1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-15",
-					"linecount" : 2,
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 1635.38889092206955, 293.666674, 123.0, 35.0 ],
-					"text" : "composer::score_file $1"
 				}
 
 			}
@@ -445,13 +432,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-15", 0 ],
-					"source" : [ "obj-1", 9 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-18", 0 ],
 					"order" : 0,
 					"source" : [ "obj-1", 1 ]
@@ -542,13 +522,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-31", 0 ],
 					"source" : [ "obj-13", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-56", 0 ],
-					"source" : [ "obj-15", 0 ]
 				}
 
 			}

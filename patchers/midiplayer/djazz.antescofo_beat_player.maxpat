@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 4,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 268.0, 190.0, 682.0, 566.0 ],
+		"rect" : [ 268.0, 190.0, 1237.0, 691.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,25 +40,13 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-6",
+					"id" : "obj-28",
+					"linecount" : 4,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 214.0, 499.0, 293.0, 20.0 ],
-					"text" : "channel tempo pitch-transposition beat-dict-name"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "(int) channel",
-					"id" : "obj-2",
-					"index" : 3,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 302.0, 50.0, 30.0, 30.0 ]
+					"patching_rect" : [ 501.0, 265.377929999999992, 226.0, 60.0 ],
+					"text" : "1. beat \n2. additional-data (=pitch-transposition)\n3. tempo \n4. track"
 				}
 
 			}
@@ -98,7 +86,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 4,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -212,7 +200,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 4,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -258,7 +246,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 5,
-											"revision" : 4,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -599,7 +587,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 4,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1001,7 +989,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 4,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1169,22 +1157,9 @@
 			}
 , 			{
 				"box" : 				{
-					"format" : 6,
-					"id" : "obj-95",
-					"maxclass" : "flonum",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "bang" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 212.5, 140.0, 40.967741727828979, 22.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"comment" : "(sym) beat dict name",
 					"id" : "obj-14",
-					"index" : 4,
+					"index" : 2,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -1219,7 +1194,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "(int) beat",
+					"comment" : "1. beat  2. additional-data (=pitch-transposition) 3. tempo  4. track",
 					"id" : "obj-5",
 					"index" : 1,
 					"maxclass" : "inlet",
@@ -1227,19 +1202,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 32.0, 31.0, 30.0, 30.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "(float) tempo",
-					"id" : "obj-4",
-					"index" : 2,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 212.5, 38.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -1255,13 +1217,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-255", 1 ],
 					"source" : [ "obj-14", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-260", 2 ],
-					"source" : [ "obj-2", 0 ]
 				}
 
 			}
@@ -1302,13 +1257,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-95", 0 ],
-					"source" : [ "obj-4", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-27", 0 ],
 					"source" : [ "obj-5", 0 ]
 				}
@@ -1318,13 +1266,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-12", 0 ],
 					"source" : [ "obj-8", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-260", 1 ],
-					"source" : [ "obj-95", 0 ]
 				}
 
 			}
